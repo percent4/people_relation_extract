@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # 读取EXCEL数据
-df = pd.read_excel('./data/人物关系表.xlsx')
+df = pd.read_excel('人物关系表.xlsx')
 label_list = list(df['关系'].value_counts().index)
 num_list= df['关系'].value_counts().tolist()
 

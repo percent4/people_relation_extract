@@ -42,6 +42,10 @@ attention = Attention(32)(gru)
 output = Dense(14, activation='softmax')(attention)
 model = Model(inputs, output)
 
+# 模型可视化
+# from keras.utils import plot_model
+# plot_model(model, to_file='model.png')
+
 model.compile(loss='categorical_crossentropy',
               optimizer=Adam(),
               metrics=['accuracy'])

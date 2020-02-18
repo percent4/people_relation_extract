@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# author: Jclian91
-# place: Pudong Shanghai
-# time: 2020-02-12 12:57
 import pandas as pd
 
 
