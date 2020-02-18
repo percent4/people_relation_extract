@@ -11,8 +11,8 @@ from att import Attention
 model = load_model('people_relation.h5', custom_objects={"Attention": Attention})
 
 # 示例语句及预处理
-text = '赵金闪#罗玉兄#在这里，赵金闪和罗玉兄夫妇已经生活了大半辈子。他们夫妇都是哈密市伊州区林业和草原局的护林员，扎根东天山脚下，守护着这片绿。'
-per1, per2, doc = text.split('#')
+text1 = '唐怡莹#唐石霞#唐怡莹，姓他他拉氏，名为他他拉·怡莹，又名唐石霞，隶属于满洲镶红旗。'
+per1, per2, doc = text1.split('#')
 text = '$'.join([per1, per2, doc.replace(per1, len(per1)*'#').replace(per2, len(per2)*'#')])
 print(text)
 
@@ -30,6 +30,7 @@ with open('data/rel_dict.json', 'r', encoding='utf-8') as f:
     rel_dict = json.load(f)
 
 id_rel_dict = {v:k for k,v in rel_dict.items()}
-print(id_rel_dict[y])
+print('原文: %s' % text1)
+print('预测人物关系: %s' % id_rel_dict[y])
 
 # 预测分类结果为：夫妻
