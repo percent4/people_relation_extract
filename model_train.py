@@ -56,5 +56,5 @@ model.save('people_relation.h5')
 print(model.evaluate(x_test, y_test))
 
 # 训练结果记录如下
-# 训练集(train), loss: 0.0210, acc: 0.9951
-# 测试集(test),  loss: 1.1099, acc: 0.7709
+# 训练集(train), loss: 0.0489, acc: 0.9851
+# 测试集(test),  loss: 1.10922, acc: 0.76190

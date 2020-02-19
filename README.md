@@ -1,4 +1,4 @@
-利用笔者自己收集的将近1800条样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+利用笔者自己收集的2106个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {
@@ -19,6 +19,10 @@
 }
 ```
 
+人物关系类别频数分布条形图如下：
+
+![](https://github.com/percent4/people_relation_extract/blob/master/data/bar_chart.png)
+
 模型结构： BERT + 双向GRU + Attention + FC 
 
 ![](https://github.com/percent4/people_relation_extract/blob/master/model.png)
@@ -26,8 +30,8 @@
 模型训练效果：
 
 ```
-# 训练集(train), loss: 0.0210, acc: 0.9951
-# 测试集(test),  loss: 1.1099, acc: 0.7709
+# 训练集(train), loss: 0.0489, acc: 0.9851
+# 测试集(test),  loss: 1.10922, acc: 0.76190
 ```
 
 模型预测：

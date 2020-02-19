@@ -12,6 +12,7 @@ relation_dict.update(dict(zip(relations, range(1, len(relations)+1))))
 with open('rel_dict.json', 'w', encoding='utf-8') as h:
     h.write(json.dumps(relation_dict, ensure_ascii=False, indent=2))
 
+print('总数: %s' % len(df))
 pprint(df['关系'].value_counts())
 df['rel'] = df['关系'].apply(lambda x: relation_dict[x])
 
