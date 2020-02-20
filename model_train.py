@@ -56,7 +56,7 @@ model.compile(loss='categorical_crossentropy',
 early_stopping = EarlyStopping(monitor='val_acc', patience=3, mode='max')
 
 # 模型训练以及评估
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=8, epochs=30)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=16, epochs=30)
 model.save('people_relation.h5')
 print(model.evaluate(x_test, y_test))
 
