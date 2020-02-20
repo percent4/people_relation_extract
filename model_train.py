@@ -2,15 +2,17 @@
 # 模型训练
 
 import numpy as np
-from load_data import get_train_test_pd
 from keras.utils import to_categorical
 from keras.models import Model
 from keras.optimizers import Adam
 from keras.layers import Input, Dense
-from bert.extract_feature import BertVector
-
+from keras.callbacks import EarlyStopping
 from att import Attention
 from keras.layers import GRU, Bidirectional
+import matplotlib.pyplot as plt
+
+from load_data import get_train_test_pd
+from bert.extract_feature import BertVector
 
 
 # 读取文件并进行转换
@@ -44,16 +46,33 @@ model = Model(inputs, output)
 
 # 模型可视化
 # from keras.utils import plot_model
-# plot_model(model, to_file='model.png')
+# plot_model(model, to_file='model.png', show_shapes=True)
 
 model.compile(loss='categorical_crossentropy',
               optimizer=Adam(),
               metrics=['accuracy'])
 
+# early stopping
+early_stopping = EarlyStopping(monitor='val_acc', patience=3, mode='max')
+
 # 模型训练以及评估
-model.fit(x_train, y_train, batch_size=8, epochs=30)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=8, epochs=30)
 model.save('people_relation.h5')
 print(model.evaluate(x_test, y_test))
+
+# 绘制loss和acc图像
+plt.subplot(2, 1, 1)
+epochs = len(history.history['loss'])
+plt.plot(range(epochs), history.history['loss'], label='loss')
+plt.plot(range(epochs), history.history['val_loss'], label='val_loss')
+plt.legend()
+
+plt.subplot(2, 1, 2)
+epochs = len(history.history['acc'])
+plt.plot(range(epochs), history.history['acc'], label='acc')
+plt.plot(range(epochs), history.history['val_acc'], label='val_acc')
+plt.legend()
+plt.savefig("loss_acc.png")
 
 # 训练结果记录如下
 # 训练集(train), loss: 0.0489, acc: 0.9851

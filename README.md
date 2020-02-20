@@ -1,4 +1,4 @@
-利用笔者自己收集的2106个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+&emsp;&emsp;利用笔者自己收集的2245个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {
@@ -19,22 +19,24 @@
 }
 ```
 
-人物关系类别频数分布条形图如下：
+&emsp;&emsp;人物关系类别频数分布条形图如下：
 
 ![](https://github.com/percent4/people_relation_extract/blob/master/data/bar_chart.png)
 
-模型结构： BERT + 双向GRU + Attention + FC 
+&emsp;&emsp;模型结构： BERT + 双向GRU + Attention + FC 
 
 ![](https://github.com/percent4/people_relation_extract/blob/master/model.png)
 
-模型训练效果：
+&emsp;&emsp;模型训练效果：
+
+![](https://github.com/percent4/people_relation_extract/blob/master/loss_acc.png)
 
 ```
-# 训练集(train), loss: 0.0489, acc: 0.9851
-# 测试集(test),  loss: 1.10922, acc: 0.76190
+# 训练集(train), loss: 0.0256, acc: 0.9933
+# 测试集(test),  loss: 1.0330, acc: 0.8129
 ```
 
-模型预测：
+&emsp;&emsp;模型预测：
 
 ```
 原文: 润生#润叶#不过，他对润生的姐姐润叶倒怀有一种亲切的感情。
@@ -59,6 +61,6 @@
 预测人物关系: 同人
 ```
 
-参考博文：
+&emsp;&emsp;参考博文：
 
 [https://www.cnblogs.com/jclian91/p/12328570.html](https://www.cnblogs.com/jclian91/p/12328570.html)
