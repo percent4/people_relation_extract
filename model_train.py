@@ -8,7 +8,7 @@ from keras.optimizers import Adam
 from keras.layers import Input, Dense
 from keras.callbacks import EarlyStopping
 from att import Attention
-from keras.layers import GRU, Bidirectional
+from keras.layers import GRU, LSTM, Bidirectional
 import matplotlib.pyplot as plt
 
 from load_data import get_train_test_pd
@@ -38,15 +38,15 @@ y_train = to_categorical(y_train, num_classes)
 y_test = to_categorical(y_test, num_classes)
 
 # 模型结构：BERT + 双向GRU + Attention + FC
-inputs = Input(shape=(80, 768,))
-gru = Bidirectional(GRU(128, dropout=0.2, return_sequences=True))(inputs)
+inputs = Input(shape=(80, 768, ))
+gru = Bidirectional(GRU(100, dropout=0.2, return_sequences=True))(inputs)
 attention = Attention(32)(gru)
 output = Dense(14, activation='softmax')(attention)
 model = Model(inputs, output)
 
 # 模型可视化
-# from keras.utils import plot_model
-# plot_model(model, to_file='model.png', show_shapes=True)
+from keras.utils import plot_model
+plot_model(model, to_file='model.png', show_shapes=True)
 
 model.compile(loss='categorical_crossentropy',
               optimizer=Adam(),
