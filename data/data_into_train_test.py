@@ -23,6 +23,8 @@ for per1, per2, text in zip(df['人物1'].tolist(), df['人物2'].tolist(), df['
 
 df['text'] = texts
 
+# df = df.iloc[:100, :] # 取前n条数据进行模型方面的测试
+
 train_df = df.sample(frac=0.8, random_state=1024)
 test_df = df.drop(train_df.index)
 

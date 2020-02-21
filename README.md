@@ -32,8 +32,9 @@
 ![](https://github.com/percent4/people_relation_extract/blob/master/loss_acc.png)
 
 ```
-# 训练集(train), loss: 0.0169, acc: 0.9952
-# 测试集(test),  loss: 1.0900, acc: 0.7759
+# 训练集(train), loss: 0.0516, acc: 0.9876
+# 最终测试集(test),  loss: 0.9070, acc: 0.7797
+# 测试集上效果最好的,  loss: 0.90695, acc: 0.77969
 ```
 
 &emsp;&emsp;模型预测：

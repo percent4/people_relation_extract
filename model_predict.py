@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 # 模型预测
 
-import json
+import os, json
 import numpy as np
 from bert.extract_feature import BertVector
 from keras.models import load_model
 from att import Attention
 
-# 加载模型
-model = load_model('people_relation.h5', custom_objects={"Attention": Attention})
+# 加载训练效果最好的模型
+model_dir = './models'
+files = os.listdir(model_dir)
+models_path = [os.path.join(model_dir, _) for _ in files]
+best_model_path = sorted(models_path, key=lambda x: float(x.split('-')[-1].replace('.h5', '')), reverse=True)[0]
+print(best_model_path)
+model = load_model(best_model_path, custom_objects={"Attention": Attention})
 
 # 示例语句及预处理
 text1 = '唐怡莹#唐石霞#唐怡莹，姓他他拉氏，名为他他拉·怡莹，又名唐石霞，隶属于满洲镶红旗。'
@@ -21,7 +26,7 @@ text1 = '马清伟#马桂烽#说到早前传出与家族拥百亿财产的富豪
 text1 = '李克农#李伦#6月25日，澎湃新闻（www.thepaper.cn）从李伦将军亲友处获悉，开国上将李克农之子、解放军原总后勤部副部长李伦中将于2019年6月25日凌晨在北京逝世，享年92岁。'
 text1 = '利孝和#陆雁群#利孝和的妻子是陆雁群，尊称「利孝和夫人」，是现任无线非执行董事，香港著名慈善家及利希慎家族成员'
 text1 = '张少怀#费贞绫#家庭出生演艺世家的张菲，父亲为台湾综艺大哥张少怀，叔叔是费玉清，姑姑是费贞绫。'
-text1 = '王方轶#王梓怡#王玉宝的孙子王方轶大学毕业后，也成了通化广播电视台的记者，而孙女王梓怡在填报高考志愿时，毫不犹豫地报考了辽宁一所传媒院校的新闻专业。'
+text1 = '小冉#吴江龙#大学时期的好朋友小冉回忆，吴花燕曾告诉她，高三时不仅父亲去世，她自己也经常生病，同一年弟弟吴江龙患上精神疾病，「开始胡言乱语，眼神呆滞，到处乱跑，连我都不认识了。'
 # text1 = '林志玲#黑泽良平#而最受关注的要数林志玲会携新婚丈夫黑泽良平首次合体亮相晚会。'
 # text1 = '陈发科#陈小旺#陈发科的爷爷是陈式太极拳一代宗师陈小旺，父亲是陈照旭。'
 # text1 = '陈发科#陈照旭#陈发科的爷爷是陈式太极拳一代宗师陈小旺，父亲是陈照旭。'

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # 模型训练
 
+import os
 import numpy as np
 from keras.utils import to_categorical
 from keras.models import Model
@@ -9,6 +10,7 @@ from keras.layers import Input, Dense
 from keras.callbacks import EarlyStopping
 from att import Attention
 from keras.layers import GRU, LSTM, Bidirectional
+from keras.callbacks import ModelCheckpoint
 import matplotlib.pyplot as plt
 
 from load_data import get_train_test_pd
@@ -39,26 +41,37 @@ y_test = to_categorical(y_test, num_classes)
 
 # 模型结构：BERT + 双向GRU + Attention + FC
 inputs = Input(shape=(80, 768, ))
-gru = Bidirectional(GRU(100, dropout=0.2, return_sequences=True))(inputs)
+gru = Bidirectional(GRU(128, dropout=0.2, return_sequences=True))(inputs)
 attention = Attention(32)(gru)
 output = Dense(14, activation='softmax')(attention)
 model = Model(inputs, output)
 
 # 模型可视化
-from keras.utils import plot_model
-plot_model(model, to_file='model.png', show_shapes=True)
+# from keras.utils import plot_model
+# plot_model(model, to_file='model.png', show_shapes=True)
 
 model.compile(loss='categorical_crossentropy',
               optimizer=Adam(),
               metrics=['accuracy'])
 
 # early stopping
-early_stopping = EarlyStopping(monitor='val_acc', patience=3, mode='max')
+early_stopping = EarlyStopping(monitor='val_acc', patience=5, mode='max')
+
+# 如果原来models文件夹下存在.h5文件，则全部删除
+model_dir = './models'
+if os.listdir(model_dir):
+    for file in os.listdir(model_dir):
+        os.remove(os.path.join(model_dir, file))
+
+# 保存最新的val_acc最好的模型文件
+filepath="models/per-rel-{epoch:02d}-{val_acc:.4f}.h5"
+checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True,mode='max')
 
 # 模型训练以及评估
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=16, epochs=30)
-model.save('people_relation.h5')
-print(model.evaluate(x_test, y_test))
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=16, epochs=30, callbacks=[early_stopping, checkpoint])
+# model.save('people_relation.h5')
+
+print('在测试集上的效果：', model.evaluate(x_test, y_test))
 
 # 绘制loss和acc图像
 plt.subplot(2, 1, 1)
@@ -75,5 +88,6 @@ plt.legend()
 plt.savefig("loss_acc.png")
 
 # 训练结果记录如下
-# 训练集(train), loss: 0.0489, acc: 0.9851
-# 测试集(test),  loss: 1.10922, acc: 0.76190
+# 训练集(train), loss: 0.0516, acc: 0.9876
+# 最终测试集(test),  loss: 0.9070, acc: 0.7797
+# 测试集上效果最好的,  loss: 0.90695, acc: 0.77969
