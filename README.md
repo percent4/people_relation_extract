@@ -1,4 +1,4 @@
-&emsp;&emsp;利用笔者自己收集的2546个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+&emsp;&emsp;利用笔者自己收集的2667个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {
@@ -32,9 +32,9 @@
 ![](https://github.com/percent4/people_relation_extract/blob/master/loss_acc.png)
 
 ```
-# 训练集(train), loss: 0.0516, acc: 0.9876
-# 最终测试集(test),  loss: 0.9070, acc: 0.7797
-# 测试集上效果最好的,  loss: 0.90695, acc: 0.77969
+# 训练集(train), loss: 0.0199, acc: 0.9948
+# 最终测试集(test),  loss: 1.0686, acc: 0.7711
+# 测试集上效果最好的,  loss: 1.0250, acc: 0.77486
 ```
 
 &emsp;&emsp;模型预测：

@@ -86,8 +86,3 @@ plt.plot(range(epochs), history.history['acc'], label='acc')
 plt.plot(range(epochs), history.history['val_acc'], label='val_acc')
 plt.legend()
 plt.savefig("loss_acc.png")
-
-# 训练结果记录如下
-# 训练集(train), loss: 0.0516, acc: 0.9876
-# 最终测试集(test),  loss: 0.9070, acc: 0.7797
-# 测试集上效果最好的,  loss: 0.90695, acc: 0.77969
