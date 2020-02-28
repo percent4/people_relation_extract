@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 # 读取EXCEL数据
 df = pd.read_excel('人物关系表.xlsx')
 label_list = list(df['关系'].value_counts().index)
-num_list= df['关系'].value_counts().tolist()
+num_list = df['关系'].value_counts().tolist()
 
 # Mac系统设置中文字体支持
 plt.rcParams["font.family"] = 'Arial Unicode MS'
 
-# 利用Matplotlib绘制条形图
+# 利用Matplotlib模块绘制条形图
 x = range(len(num_list))
 rects = plt.bar(left=x, height=num_list, width=0.6, color='blue', label="频数")
 plt.ylim(0, 800) # y轴范围
