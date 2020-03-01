@@ -1,6 +1,6 @@
 &emsp;&emsp;运行该项目的模型训练和模型预测脚本需要准备BERT中文版的模型数据，下载网址为：[https://github.com/google-research/bert/blob/master/multilingual.md](https://github.com/google-research/bert/blob/master/multilingual.md) 。
 
-&emsp;&emsp;利用笔者自己收集的2667个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+&emsp;&emsp;利用笔者自己收集的2826个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {
@@ -34,9 +34,9 @@
 ![](https://github.com/percent4/people_relation_extract/blob/master/loss_acc.png)
 
 ```
-# 训练集(train), loss: 0.0199, acc: 0.9948
-# 最终测试集(test),  loss: 1.0686, acc: 0.7711
-# 测试集上效果最好的,  loss: 1.0250, acc: 0.77486
+# 训练集(train), loss: 0.0211, acc: 0.9956
+# 最终测试集(test),  loss: 1.0226, acc: 0.7858
+# 测试集上效果最好的,  loss: 0.8052, acc: 0.8106
 ```
 
 &emsp;&emsp;模型预测：
