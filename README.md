@@ -1,6 +1,6 @@
 &emsp;&emsp;运行该项目的模型训练和模型预测脚本需要准备BERT中文版的模型数据，下载网址为：[https://github.com/google-research/bert/blob/master/multilingual.md](https://github.com/google-research/bert/blob/master/multilingual.md) 。
 
-&emsp;&emsp;利用笔者自己收集的2826个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+&emsp;&emsp;利用笔者自己收集的2959个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {
@@ -34,9 +34,34 @@
 ![](https://github.com/percent4/people_relation_extract/blob/master/loss_acc.png)
 
 ```
-# 训练集(train), loss: 0.0211, acc: 0.9956
-# 最终测试集(test),  loss: 1.0226, acc: 0.7858
-# 测试集上效果最好的,  loss: 0.8052, acc: 0.8106
+# 训练集(train), loss: 0.0260, acc: 0.9941
+# 最终测试集(test),  loss: 0.9505, acc: 0.7905
+# 测试集上效果最好的,  loss: 0.8277, acc: 0.7956
+```
+
+&emsp;&emsp;在测试集上的每一类的classification_report如下：
+
+```
+              precision    recall  f1-score   support
+
+     unknown       0.72      0.77      0.75       159
+          夫妻       0.82      0.79      0.81        58
+          父母       0.84      0.91      0.87        99
+        兄弟姐妹       0.81      0.84      0.82        25
+         上下级       0.62      0.67      0.64        24
+          师生       0.71      0.83      0.76        29
+          好友       0.82      0.67      0.73        27
+          同学       0.92      0.69      0.79        16
+          合作       0.83      0.77      0.80        44
+          同人       1.00      0.84      0.91        25
+          情侣       0.79      0.79      0.79        19
+          祖孙       0.76      0.62      0.68        21
+          同门       0.91      0.88      0.89        24
+          亲戚       0.83      0.68      0.75        22
+
+   micro avg       0.79      0.79      0.79       592
+   macro avg       0.81      0.77      0.79       592
+weighted avg       0.80      0.79      0.79       592
 ```
 
 &emsp;&emsp;模型预测：
@@ -64,6 +89,6 @@
 预测人物关系: 同人
 ```
 
-&emsp;&emsp;参考博文：
+&emsp;&emsp;参考文章：
 
 [https://www.cnblogs.com/jclian91/p/12328570.html](https://www.cnblogs.com/jclian91/p/12328570.html)
