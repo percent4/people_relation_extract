@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # 模型训练
 
-import os, json
+import os
+import json
 import numpy as np
 from keras.utils import to_categorical
 from keras.models import Model
@@ -18,6 +19,8 @@ from operator import itemgetter
 from load_data import get_train_test_pd
 from bert.extract_feature import BertVector
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # 读取文件并进行转换
 train_df, test_df = get_train_test_pd()
