@@ -347,4 +347,3 @@ if __name__ == "__main__":
         start = time.time()
         vectors = bert.encode([question])
         print(str(vectors))
-        #print(f'predict time:----------{time.time() - start}')

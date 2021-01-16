@@ -1,6 +1,6 @@
 &emsp;&emsp;运行该项目的模型训练和模型预测脚本需要准备BERT中文版的模型数据，下载网址为：[https://github.com/google-research/bert/blob/master/multilingual.md](https://github.com/google-research/bert/blob/master/multilingual.md) 。
 
-&emsp;&emsp;利用笔者自己收集的2959个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
+&emsp;&emsp;利用笔者自己收集的3881个样本，对人物关系抽取进行尝试。人物关系共分为14类，如下：
 
 ```json
 {

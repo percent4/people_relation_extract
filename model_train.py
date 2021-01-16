@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 模型训练
-
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 import json
 import numpy as np
 from keras.utils import to_categorical
@@ -19,12 +19,9 @@ from operator import itemgetter
 from load_data import get_train_test_pd
 from bert.extract_feature import BertVector
 
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 # 读取文件并进行转换
 train_df, test_df = get_train_test_pd()
-bert_model = BertVector(pooling_strategy="NONE", max_seq_len=80)
+bert_model = BertVector(pooling_strategy="NONE", max_seq_len=128)
 print('begin encoding')
 f = lambda text: bert_model.encode([text])["encodes"][0]
 
@@ -45,7 +42,7 @@ y_train = to_categorical(y_train, num_classes)
 y_test = to_categorical(y_test, num_classes)
 
 # 模型结构：BERT + 双向GRU + Attention + FC
-inputs = Input(shape=(80, 768, ))
+inputs = Input(shape=(128, 768, ))
 gru = Bidirectional(GRU(128, dropout=0.2, return_sequences=True))(inputs)
 attention = Attention(32)(gru)
 output = Dense(num_classes, activation='softmax')(attention)

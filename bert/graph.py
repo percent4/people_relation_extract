@@ -12,7 +12,7 @@ import contextlib
 
 
 def import_tf(device_id=-1, verbose=False):
-    #os.environ['CUDA_VISIBLE_DEVICES'] = '-1' if device_id < 0 else str(device_id)
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '-1' if device_id < 0 else str(device_id)
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0' if verbose else '3'
     import tensorflow as tf
     tf.logging.set_verbosity(tf.logging.DEBUG if verbose else tf.logging.ERROR)

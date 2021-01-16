@@ -16,6 +16,7 @@ def read_txt_file(file_path):
 
     return labels, texts
 
+
 # 获取训练数据和测试数据，格式为pandas的DataFrame
 def get_train_test_pd():
     file_path = 'data/train.txt'
