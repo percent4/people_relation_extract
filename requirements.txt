@@ -1,4 +1,4 @@
-tensorflow==1.13.1
+tensorflow==2.7.2
 keras==2.3.1
 pandas==0.23.4
 matplotlib==2.2.4
